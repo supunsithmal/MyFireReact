@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Counters from "./components/counters";
-import NavBar from "./components/navbar";
+import Counters from "./counters";
+import NavBar from "./navbar";
+import Devices from "./devices";
 
 class App extends Component {
   render() {
@@ -8,7 +9,7 @@ class App extends Component {
       <React.Fragment>
         <NavBar />
         <main className="container">
-          <Counters />
+          <Devices />
         </main>
 
         {/* <div className="container-fluid text-center">

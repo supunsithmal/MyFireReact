@@ -6,11 +6,10 @@ import {
   Redirect
 } from "react-router-dom";
 import { firebaseApp } from "../config/firebase";
-import App from "../App";
+
 import SignIn from "./signin";
 import SignUp from "./signup";
-import Counters from "./counters";
-
+import App from "./app";
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -39,9 +38,9 @@ class Main extends Component {
     return (
       <Router path="/">
         <div>
-          <Route path="/app" component={App} />
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
+          <Route path="/app" component={App} />
           <div>
             {this.state.user ? (
               <Redirect to="/app" />

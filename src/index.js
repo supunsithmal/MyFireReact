@@ -7,12 +7,8 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import { firebaseApp } from "./config/firebase";
 
-import App from "./App";
-import SignIn from "./components/signin";
-import SignUp from "./components/signup";
-import Counters from "./components/counters";
 import Main from "./components/main";
+import Devices from "./components/devices";
 
 ReactDOM.render(<Main />, document.getElementById("root"));
