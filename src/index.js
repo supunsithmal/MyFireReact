@@ -9,6 +9,5 @@ import {
 } from "react-router-dom";
 
 import Main from "./components/main";
-import Devices from "./components/devices";
 
 ReactDOM.render(<Main />, document.getElementById("root"));
