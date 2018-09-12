@@ -4,7 +4,7 @@ class SideNav extends Component {
   state = {};
   render() {
     return (
-      <div className="col-3">
+      <div className="col-2">
         <div className="nav flex-column" href="#">
           <a className="nav-link btn-light" href="#">
             Dashboard
