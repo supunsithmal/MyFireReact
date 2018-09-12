@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { firebaseApp } from "../config/firebase";
+import { connect } from "react-redux";
+import { logUser } from "../actions";
 
 class NavBar extends Component {
   signOut() {
@@ -10,7 +12,7 @@ class NavBar extends Component {
   render() {
     return (
       <nav className="navbar navbar-dark bg-dark">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/home">
           Records
         </a>
         <button
@@ -24,4 +26,12 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+function mapStateToProps(state) {
+  console.log("state", state);
+  return {};
+}
+
+export default connect(
+  mapStateToProps,
+  { logUser }
+)(NavBar);

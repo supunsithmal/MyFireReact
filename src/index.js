@@ -8,6 +8,8 @@ import {
   Redirect
 } from "react-router-dom";
 
-import Main from "./components/main";
+import App from "./components/app";
 
-ReactDOM.render(<Main />, document.getElementById("root"));
+//store.dispatch(logUser(email))
+
+ReactDOM.render(<App />, document.getElementById("root"));

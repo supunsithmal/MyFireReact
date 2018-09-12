@@ -1,40 +1,71 @@
 import React, { Component } from "react";
-import Counters from "./counters";
-import NavBar from "./navbar";
-import Devices from "./devices";
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  Switch
+} from "react-router-dom";
+
+import { firebaseApp } from "../config/firebase";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+
+import SignIn from "./signin";
+import SignUp from "./signup";
+import Home from "./home";
+import NotFound from "./notfound";
+
+import reducer from "../reducers";
+import logUser from "../actions";
+
+const store = createStore(reducer);
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {}
+    };
+  }
+
+  componentDidMount() {
+    this.initAuthListner();
+  }
+
+  initAuthListner() {
+    firebaseApp.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log("user has signed in", user);
+        this.setState({ user: user });
+      } else {
+        console.log("userhas signed out or still needs to sign in");
+        this.setState({ user: null });
+      }
+    });
+  }
+
   render() {
     return (
-      <React.Fragment>
-        <NavBar />
-        <main className="container">
-          <Devices />
-        </main>
+      <Provider store={store}>
+        <div>
+          <Router path="/" component={Home}>
+            <main>
+              <Route path="/signin" component={SignIn} />
+              <Route path="/signup" component={SignUp} />
+              <Route path="/home" component={Home} />
 
-        {/* <div className="container-fluid text-center">
-          <div className="row content">
-            <div className="col-sm-2 sidenav">
-              <p className="m-2 p-2">Option 1</p>
-              <p className="m-2 p-2">Option 1</p>
-              <p className="m-2 p-2">Option 1</p>
-            </div>
-            <div className="col-sm-8 text-left">
-              <div className="jumbotron m-2">
-                <h1 className="display-8">Records</h1>
-                <Counters />
-              </div>
-            </div>
-          </div>
-        </div> */}
-
-        {/* <footer
-          className="container-fluid text-center"
-          style={{ background: "#555555", paddingTop: 15, paddingBottom: 5 }}
-        >
-          <p>Footer Text</p>
-        </footer> */}
-      </React.Fragment>
+              {//TODO possible error outcome
+              this.state.user ? (
+                <Redirect to="/home" />
+              ) : (
+                <Redirect to="/signin" />
+              )}
+            </main>
+          </Router>
+        </div>
+      </Provider>
     );
   }
 }
