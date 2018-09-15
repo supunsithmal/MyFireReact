@@ -1,0 +1,1 @@
+export const SHOW_NEW_DEVICE = "SHOW_NEW_DEVICE";

@@ -8,19 +8,17 @@ import {
   Switch
 } from "react-router-dom";
 
-import { firebaseApp } from "../config/firebase";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
 
-import SignIn from "./signin";
-import SignUp from "./signup";
-import Home from "./home";
-import NotFound from "./notfound";
+import { firebaseApp } from "../config/firebase";
 
-import reducer from "../reducers";
-import logUser from "../actions";
+// import SignIn from "./signin";
+// import SignUp from "./signup";
+// import Home from "./home";
+// import NotFound from "./notfound";
+import Devices from "./devices";
 
-const store = createStore(reducer);
+import store from "../store";
 
 class App extends Component {
   constructor(props) {
@@ -50,7 +48,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div>
-          <Router path="/" component={Home}>
+          {/* <Router path="/" component={Home}>
             <main>
               <Route path="/signin" component={SignIn} />
               <Route path="/signup" component={SignUp} />
@@ -63,7 +61,8 @@ class App extends Component {
                 <Redirect to="/signin" />
               )}
             </main>
-          </Router>
+          </Router> */}
+          <Devices />
         </div>
       </Provider>
     );
